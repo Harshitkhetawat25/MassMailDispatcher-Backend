@@ -44,7 +44,9 @@ const signup = async (req, res) => {
       emailVerificationToken,
       emailVerificationExpires,
     });
-    const verificationUrl = `http://localhost:5173/verify-email?token=${emailVerificationToken}`;
+    const verificationUrl = `${
+      process.env.CLIENT_URL || "http://localhost:5173"
+    }/verify-email?token=${emailVerificationToken}`;
     await sendVerificationEmail(newUser, verificationUrl);
 
     const token = genToken(newUser._id);
@@ -134,7 +136,9 @@ const login = async (req, res) => {
       user.emailVerificationToken = emailVerificationToken;
       user.emailVerificationExpires = emailVerificationExpires;
       await user.save();
-      const verificationUrl = `http://localhost:5173/verify-email?token=${emailVerificationToken}`;
+      const verificationUrl = `${
+        process.env.CLIENT_URL || "http://localhost:5173"
+      }/verify-email?token=${emailVerificationToken}`;
       await sendVerificationEmail(user, verificationUrl);
       return res.status(403).json({
         message:
@@ -315,7 +319,9 @@ const resendVerificationEmail = async (req, res) => {
   user.emailVerificationToken = emailVerificationToken;
   user.emailVerificationExpires = emailVerificationExpires;
   await user.save();
-  const verificationUrl = `http://localhost:5173/verify-email?token=${emailVerificationToken}`;
+  const verificationUrl = `${
+    process.env.CLIENT_URL || "http://localhost:5173"
+  }/verify-email?token=${emailVerificationToken}`;
   await sendVerificationEmail(user, verificationUrl);
   return res
     .status(200)

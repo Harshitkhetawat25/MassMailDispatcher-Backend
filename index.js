@@ -18,7 +18,12 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "https://mass-mail-dispatcher-frontend.vercel.app",
+      process.env.CLIENT_URL,
+    ].filter(Boolean),
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: [
@@ -37,6 +42,15 @@ app.use("/api/template", templateRouter);
 app.use("/api/email", emailRouter);
 app.use("/api/mail", mailLogRouter);
 app.use("/api/ai", aiRoute);
+
+// Root route
+app.get("/", (req, res) => {
+  res.json({
+    message: "Mass Mail Dispatcher Backend API",
+    version: "1.0.0",
+    status: "running",
+  });
+});
 
 // Debug route to test connectivity
 app.get("/api/test", (req, res) => {
