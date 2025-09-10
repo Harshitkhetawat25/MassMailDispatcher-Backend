@@ -1,4 +1,4 @@
-const dotenv = require("dotenv").config();
+require("dotenv").config();
 const express = require("express");
 const connectDb = require("./configs/connectDb");
 const cors = require("cors");
@@ -18,12 +18,7 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "http://localhost:5174",
-      "https://r8752nt4-5173.inc1.devtunnels.ms",
-      "https://mass-mail-dispatcher-frontend.vercel.app",
-    ],
+    origin: process.env.CLIENT_URL,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: [
