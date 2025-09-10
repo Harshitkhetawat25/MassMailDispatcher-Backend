@@ -66,13 +66,13 @@ const signup = async (req, res) => {
     res.cookie("accessToken", token, {
       httpOnly: true,
       secure: isProd,
-      sameSite: "lax",
+      sameSite: isProd ? "none" : "lax",
       maxAge: 15 * 60 * 1000,
     });
     res.cookie("refreshToken", `${refreshTokenId}.${refreshSecret}`, {
       httpOnly: true,
       secure: isProd,
-      sameSite: "lax",
+      sameSite: isProd ? "none" : "lax",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
     const { password: pass, ...rest } = newUser.toObject();
@@ -164,13 +164,13 @@ const login = async (req, res) => {
     res.cookie("accessToken", token, {
       httpOnly: true,
       secure: isProd,
-      sameSite: "lax",
+      sameSite: isProd ? "none" : "lax",
       maxAge: 15 * 60 * 1000,
     });
     res.cookie("refreshToken", `${refreshTokenId}.${refreshSecret}`, {
       httpOnly: true,
       secure: isProd,
-      sameSite: "lax",
+      sameSite: isProd ? "none" : "lax",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
     const { password: pass, ...rest } = user.toObject();
@@ -253,13 +253,13 @@ const googleAuthController = async (req, res) => {
     res.cookie("accessToken", jwtToken, {
       httpOnly: true,
       secure: isProd,
-      sameSite: "lax",
+      sameSite: isProd ? "none" : "lax",
       maxAge: 15 * 60 * 1000,
     });
     res.cookie("refreshToken", `${refreshTokenId}.${refreshSecret}`, {
       httpOnly: true,
       secure: isProd,
-      sameSite: "lax",
+      sameSite: isProd ? "none" : "lax",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
     const { password: pass, ...rest } = user.toObject();
