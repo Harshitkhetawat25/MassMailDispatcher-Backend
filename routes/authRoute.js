@@ -1,0 +1,10 @@
+const authRouter = require("express").Router();
+const {signup, login, logout, googleAuthController, verifyEmail} = require("../controllers/authController");
+const { resendVerificationEmail } = require("../controllers/authController");
+authRouter.post("/signup", signup);
+authRouter.post("/login", login);
+authRouter.post("/logout", logout);
+authRouter.post('/google', googleAuthController );
+authRouter.get('/verify-email', verifyEmail);
+authRouter.post("/resend-verification", resendVerificationEmail);
+module.exports = authRouter;
