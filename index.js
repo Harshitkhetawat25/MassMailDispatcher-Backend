@@ -22,7 +22,7 @@ app.use(
       "http://localhost:5173",
       "http://localhost:5174",
       "https://r8752nt4-5173.inc1.devtunnels.ms",
-      "https://mass-mail-dispatcher-frontend.vercel.app/",
+      "https://mass-mail-dispatcher-frontend.vercel.app",
     ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
