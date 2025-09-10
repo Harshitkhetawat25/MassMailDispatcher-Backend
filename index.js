@@ -35,11 +35,6 @@ app.use(
   })
 );
 
-// Handle preflight requests explicitly
-app.options('*', (req, res) => {
-  res.status(200).end();
-});
-
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 app.use("/api/upload", uploadRouter);
